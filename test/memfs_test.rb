@@ -3,6 +3,24 @@ require 'memfs'
 require 'fileutils'
 
 class TestMemfs < Test::Unit::TestCase
+  def test_pwd
+    MemFs.activate do
+      assert_equal('/', Dir.pwd)
+    end
+  end
+
+  def test_ls
+    MemFs.activate do
+      assert_equal([], Dir.glob('*'))
+    end
+  end
+
+  def test_system
+    MemFs.activate do
+      assert_not_equal('', `ls`)
+    end
+  end
+
   def test_single_mkdir
     dir = '/test'
     MemFs.activate do
@@ -26,12 +44,12 @@ class TestMemfs < Test::Unit::TestCase
   end
 
   def test_rmdir
-    dir = '/test1'
+    dir = '/tmp'
     MemFs.activate do
-      FileUtils.mkdir(dir)
       FileUtils.rmdir(dir)
       assert_false(File.directory?(dir))
     end
+    assert_true(File.directory?(dir))
   end
 
   def test_ln_s

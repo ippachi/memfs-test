@@ -1,0 +1,19 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    memfs (1.0.0)
+    power_assert (2.0.0)
+    rake (13.0.3)
+    test-unit (3.4.0)
+      power_assert
+
+PLATFORMS
+  x86_64-darwin-20
+
+DEPENDENCIES
+  memfs
+  rake
+  test-unit
+
+BUNDLED WITH
+   2.2.3
